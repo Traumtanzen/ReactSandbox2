@@ -5,8 +5,7 @@ export class Counter extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { value: '' };
-        this.result = { result: '' };
+        this.state = { value: null, result: null };
     }
 
     handleChange = (event) => {
@@ -22,9 +21,14 @@ export class Counter extends Component {
                 value
             })
         })
-        this.state.result = fetch("calculator", {
+    }
+
+    showResult(event) {
+        event.preventDefault()
+        var result = fetch("calculator", {
             method: "GET"
         })
+        this.setState({ result: event.target.value });
     }
 
     render() {
@@ -36,9 +40,9 @@ export class Counter extends Component {
                     or one number and "sin", "cos" or "tan" after a space <br></br>
                     and press "Calculate" button to get a result.</p>
 
-                <input type="text" value={this.state.value} onChange={this.handleChange} onSubmit={this.handleSubmit} />
+                <input type="text" value={this.state.value} onChange={this.handleChange} />
 
-                <p aria-live="polite">Your result: <strong>{this.state.result}</strong></p>
+                <p aria-live="polite">Your result: <strong>{this.showResult}</strong></p>
 
                 <button className="btn btn-primary" onClick={this.handleSubmit}>Calculate</button>
             </div>
