@@ -1,31 +1,49 @@
 import React, { Component } from 'react';
 
 export class Counter extends Component {
-  static displayName = Counter.name;
+    static displayName = Counter.name;
 
-  constructor(props) {
-    super(props);
-    this.state = { currentCount: 0 };
-    this.incrementCounter = this.incrementCounter.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = { value: '' };
+        this.result = { result: '' };
+    }
 
-  incrementCounter() {
-    this.setState({
-      currentCount: this.state.currentCount + 1
-    });
-  }
+    handleChange = (event) => {
+        this.setState({ value: event.target.value });
+    }
 
-  render() {
-    return (
-      <div>
-        <h1>Counter</h1>
+    handleSubmit(event) {
+        var value = this.state.value
+        event.preventDefault()
+        fetch("calculator", {
+            method: "POST",
+            body: JSON.stringify({
+                value
+            })
+        })
+        this.state.result = fetch("calculator", {
+            method: "GET"
+        })
+    }
 
-        <p>This is a simple example of a React component.</p>
+    render() {
+        return (
+            <div>
+                <h1>Calculator</h1>
 
-        <p aria-live="polite">Current count: <strong>{this.state.currentCount}</strong></p>
+                <p>Make an input of two numbers and an operator (+,-,/,*) between them <br></br>
+                    or one number and "sin", "cos" or "tan" after a space <br></br>
+                    and press "Calculate" button to get a result.</p>
 
-        <button className="btn btn-primary" onClick={this.incrementCounter}>Increment</button>
-      </div>
-    );
-  }
+                <input type="text" value={this.state.value} onChange={this.handleChange} onSubmit={this.handleSubmit} />
+
+                <p aria-live="polite">Your result: <strong>{this.state.result}</strong></p>
+
+                <button className="btn btn-primary" onClick={this.handleSubmit}>Calculate</button>
+            </div>
+        );
+    }
+
 }
+

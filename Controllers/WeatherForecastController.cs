@@ -19,14 +19,14 @@ namespace ReactSandbox2.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<PreparedResult> Get()
+        public IEnumerable<CalcResults> Get()
         {
-            List<PreparedResult> calcList = new List<PreparedResult>();
+            List<CalcResults> calcList = new List<CalcResults>();
             using (var context = new CalculatorContext())
             {
                 foreach (var entry in context.LogFile)
                 {
-                    PreparedResult getEntry = new PreparedResult
+                    CalcResults getEntry = new CalcResults
                     {
                         Id = entry.Id,
                         UserQuery = entry.UserQuery,
