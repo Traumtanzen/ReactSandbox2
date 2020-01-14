@@ -8,7 +8,7 @@ using Calculator.Services;
 
 namespace ReactSandbox2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CalculatorController : ControllerBase
     {

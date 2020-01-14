@@ -21,18 +21,16 @@ export class Counter extends Component {
         event.preventDefault()
         fetch("calculator", {
             method: "POST",
-            body: JSON.stringify({
-                value
-            })
+            body: value
         })
     }
 
     showResult(event) {
         event.preventDefault()
-        var result = fetch("calculator", {
+        result = fetch("calculator", {
             method: "GET"
         })
-        this.setState({ result: event.target.value });
+        this.setState({ result: event.target.result });
     }
 
     render() {
