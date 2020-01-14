@@ -5,8 +5,12 @@ export class Counter extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { value: null, result: null };
+        this.state = { value: '', result: '' };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.showResult = this.showResult.bind(this);
     }
+
 
     handleChange = (event) => {
         this.setState({ value: event.target.value });
