@@ -9,11 +9,11 @@ namespace ReactSandbox2.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class CalcLogsController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<CalcLogsController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public CalcLogsController(ILogger<CalcLogsController> logger)
         {
             _logger = logger;
         }

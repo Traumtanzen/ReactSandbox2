@@ -10,7 +10,7 @@ namespace Calculator.Services
     {
         public async Task GettingQuery(string query)
         {
-            //query.Trim().ToLower();
+            query.Trim().ToLower();
             IProcessQuery process = new ProcessQuery();
             await process.ProcessingQuery(query);
         }

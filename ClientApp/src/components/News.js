@@ -17,7 +17,7 @@ export class News extends Component {
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
-                        <th>News</th>
+                        <th>Latest news</th>
                     </tr>
                 </thead>
                 <tbody>

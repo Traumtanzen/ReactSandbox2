@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-export class FetchData extends Component {
-    static displayName = FetchData.name;
+export class CalcLogs extends Component {
+    static displayName = CalcLogs.name;
 
     constructor(props) {
         super(props);
-        this.state = { forecasts: [], loading: true };
+        this.state = { calcLogs: [], loading: true };
     }
 
     componentDidMount() {
-        this.populateWeatherData();
+        this.populateCalcLogs();
     }
 
-    static renderForecastsTable(forecasts) {
+    static renderCalcLogs(calcLogs) {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -24,12 +24,12 @@ export class FetchData extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {forecasts.map(forecast =>
-                        <tr key={forecast.id}>
-                            <td>{forecast.id}</td>
-                            <td>{forecast.userQuery}</td>
-                            <td>{forecast.calculationResult}</td>
-                            <td>{forecast.operationTime}</td>
+                    {calcLogs.map(calcLog =>
+                        <tr key={calcLog.id}>
+                            <td>{calcLog.id}</td>
+                            <td>{calcLog.userQuery}</td>
+                            <td>{calcLog.calculationResult}</td>
+                            <td>{calcLog.operationTime}</td>
                         </tr>
                     )}
                 </tbody>
@@ -40,7 +40,7 @@ export class FetchData extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : FetchData.renderForecastsTable(this.state.forecasts);
+            : CalcLogs.renderCalcLogs(this.state.calcLogs);
 
         return (
             <div>
@@ -51,9 +51,9 @@ export class FetchData extends Component {
         );
     }
 
-    async populateWeatherData() {
-        const response = await fetch('weatherforecast');
+    async populateCalcLogs() {
+        const response = await fetch('calclogs');
         const data = await response.json();
-        this.setState({ forecasts: data, loading: false });
+        this.setState({ calcLogs: data, loading: false });
     }
 }

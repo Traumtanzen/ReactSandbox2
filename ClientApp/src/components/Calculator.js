@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-export class Counter extends Component {
-    static displayName = Counter.name;
+export class Calculator extends Component {
+    static displayName = Calculator.name;
 
     constructor(props) {
         super(props);
