@@ -20,7 +20,7 @@ namespace ReactSandbox2.Controllers
         }
 
         [HttpGet]
-        public string Process(string query)
+        public string Process()
         {
             PrepareResult result = new PrepareResult();
             return result.MyResult;

@@ -8,7 +8,7 @@ export class Calculator extends Component {
         this.state = { value: '', result: '' };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.showResult = this.showResult.bind(this);
+        //this.showResult = this.showResult.bind(this);
     }
 
 
@@ -23,15 +23,19 @@ export class Calculator extends Component {
             method: "POST",
             body: value
         })
-    }
-
-    showResult(event) {
-        event.preventDefault()
         result = fetch("calculator", {
             method: "GET"
         })
         this.setState({ result: event.target.result });
     }
+
+    //showResult(event) {
+    //    event.preventDefault()
+    //    result = fetch("calculator", {
+    //        method: "GET"
+    //    })
+    //    this.setState({ result: event.target.result });
+    //}
 
     render() {
         return (
@@ -44,7 +48,7 @@ export class Calculator extends Component {
 
                 <input type="text" value={this.state.value} onChange={this.handleChange} />
 
-                <p aria-live="polite">Your result: <strong>{this.showResult}</strong></p>
+                <p aria-live="polite">Your result: <strong>{this.state.result}</strong></p>
 
                 <button className="btn btn-primary" onClick={this.handleSubmit}>Calculate</button>
             </div>
