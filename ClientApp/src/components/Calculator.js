@@ -5,37 +5,39 @@ export class Calculator extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { value: '', result: '' };
+        this.state = { query: '', result: '' };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        //this.showResult = this.showResult.bind(this);
     }
 
 
     handleChange = (event) => {
-        this.setState({ value: event.target.value });
+        this.setState({ query: event.target.value });
     }
 
     handleSubmit(event) {
-        var value = this.state.value
+        var that = this;
+        var postedValue = this.state.query
         event.preventDefault()
         fetch("calculator", {
+            headers: {
+                "content-type": 'application/json'
+            },
             method: "POST",
-            body: value
-        })
-        result = fetch("calculator", {
-            method: "GET"
-        })
-        this.setState({ result: event.target.result });
+            body: JSON.stringify({ "query": postedValue })
+        }).then(response => {
+            if (response.status === 200) {
+                return response.json();
+            }
+
+        }).then(function (data) {
+            
+            console.log(data); 
+            that.setState({ result: data });
+        });
+        
     }
 
-    //showResult(event) {
-    //    event.preventDefault()
-    //    result = fetch("calculator", {
-    //        method: "GET"
-    //    })
-    //    this.setState({ result: event.target.result });
-    //}
 
     render() {
         return (
@@ -46,7 +48,7 @@ export class Calculator extends Component {
                     or one number and "sin", "cos" or "tan" after a space <br></br>
                     and press "Calculate" button to get a result.</p>
 
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
+                <input type="text" value={this.state.query} onChange={this.handleChange} />
 
                 <p aria-live="polite">Your result: <strong>{this.state.result}</strong></p>
 

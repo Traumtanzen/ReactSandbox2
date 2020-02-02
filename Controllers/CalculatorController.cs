@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Calculator.Services;
+using ReactSandbox2.Models;
 
 namespace ReactSandbox2.Controllers
 {
@@ -13,17 +14,12 @@ namespace ReactSandbox2.Controllers
     public class CalculatorController : ControllerBase
     {
         [HttpPost]
-        public async Task Post(string query)
+        public async Task<string> Post([FromBody] CalcModel query)
         {
             GetQuery process = new GetQuery();
-            await process.GettingQuery(query);
+            var result = await process.GettingQuery(query.Query);
+            return result;
         }
 
-        [HttpGet]
-        public string Process()
-        {
-            PrepareResult result = new PrepareResult();
-            return result.MyResult;
-        }
     }
 }

@@ -5,11 +5,11 @@ namespace Calculator.Services
 {
     public class Sum: ISum
     {
-        public async Task Summing(string query, double firstValue, double secondValue)
+        public async Task<string> Summing(string query, double firstValue, double secondValue)
         {
             double calculatedResult = firstValue + secondValue;
             PrepareResult prepare = new PrepareResult();
-            await prepare.PreparingResult(query, calculatedResult);
+            return await prepare.PreparingResult(query, calculatedResult);
         }
     }
 }

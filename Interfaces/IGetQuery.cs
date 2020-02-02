@@ -7,6 +7,6 @@ namespace Calculator.Interfaces
 {
     interface IGetQuery
     {
-        public Task GettingQuery(string query);
+        public Task<string> GettingQuery(string query);
     }
 }

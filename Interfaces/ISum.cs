@@ -4,6 +4,6 @@ namespace Calculator.Interfaces
 {
     interface ISum
     {
-        public Task Summing(string query, double firstValue, double secondValue);
+        public Task<string> Summing(string query, double firstValue, double secondValue);
     }
 }

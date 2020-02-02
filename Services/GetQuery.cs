@@ -8,11 +8,11 @@ namespace Calculator.Services
 {
     public class GetQuery : IGetQuery
     {
-        public async Task GettingQuery(string query)
+        public async Task<string> GettingQuery(string query)
         {
             query.Trim().ToLower();
             IProcessQuery process = new ProcessQuery();
-            await process.ProcessingQuery(query);
+            return await process.ProcessingQuery(query);
         }
     }
 }

@@ -14,30 +14,21 @@ export class News extends Component {
 
     static renderNews(news) {
         return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Latest news</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {news.articles.map(article =>
-                        <tr>
-                            <td>
-                                <div>
-                                    <h1>{article.title} </h1>
-                                    <br></br>
-                                    <img src={article.urlToImage}></img>
-                                    <br></br>
-                                    <p>{article.description}</p>
-                                    <br></br>
-                                    <p> <a href={article.url}>Read more...</a></p>
-                                </div>
-                            </td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>);
+            <div>
+                {news.articles.map(article =>
+
+                    <article>
+                        <h1>{article.title} </h1>
+                        <br></br>
+                        <img src={article.urlToImage}></img>
+                        <br></br>
+                        <p>{article.description}</p>
+                        <br></br>
+                        <p> <a href={article.url}>Read more...</a></p>
+                    </article>
+
+                )}
+            </div>);
     }
 
     render() {

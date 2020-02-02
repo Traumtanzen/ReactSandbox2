@@ -7,6 +7,6 @@ namespace Calculator.Interfaces
 {
     interface IProcessQuery
     {
-        public Task ProcessingQuery(string rawQuery);
+        public Task<string> ProcessingQuery(string rawQuery);
     }
 }
